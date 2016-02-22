@@ -20,22 +20,46 @@ class APIManager {
         //let session = NSURLSession.sharedSession() //singleton d pattern, just one session caching
         let url = NSURL(string: urlString)!
         
-        // run in a suspended state to background thread: asynchronous call
-        let task = session.dataTaskWithURL(url) {
-        (data, response, error) -> Void in// binary data, http response, errors?
+        let task = session.dataTaskWithURL(url) { // task.resume()
+            (data, response,error ) -> Void in
         
-        // moving to the main thread
-        dispatch_async(dispatch_get_main_queue()) {
         if error != nil {
-            // localizedDescription messages: Internet connection appears to be offline, etc
-            completion(result: (error!.localizedDescription))
-        } else {
-        completion(result: "NSURLSession succesful")
-        print(data)
-        }
-        }
-        
-        }
-    task.resume()
-    }
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(result: (error!.localizedDescription))
+            }
+        }else {
+                // Added for JSON serialization
+                //print(data)
+                do {
+                    /* Allow fragments - top level objects is not Array or Dictionary.
+                    Any type of string or value NSJSONSerialization requires de the
+                    Do / Try / Catch Converts the NSDATA into a JSON Object and cast it
+                    to a Dictionary */
+                    
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)// option for application don't crash
+                        // waits for dictionary { not array [
+                        as? [String: AnyObject] {
+                            
+                            print(json) //  console
+                            // try diferent priority? DISPATCH_QUEUE_PRIORITY_LOW
+                            let priority = DISPATCH_QUEUE_PRIORITY_HIGH // QOS
+                            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    completion(result: "JSONSerialization Succesful")
+                                }
+                            }
+                    }
+                } catch {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(result: "error in JSONSerialization")
+                    }
+                }
+                
+                // End of JSONSerialization
+            
+            
+                }
+            }
+        task.resume()
+}
 }
