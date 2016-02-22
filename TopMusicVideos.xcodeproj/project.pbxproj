@@ -14,6 +14,7 @@
 		8E8436401C7A712D001F6337 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E84363E1C7A712D001F6337 /* LaunchScreen.storyboard */; };
 		8E84364B1C7A712D001F6337 /* TopMusicVideosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E84364A1C7A712D001F6337 /* TopMusicVideosTests.swift */; };
 		8E8436561C7A712D001F6337 /* TopMusicVideosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436551C7A712D001F6337 /* TopMusicVideosUITests.swift */; };
+		8E8436681C7A8573001F6337 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436671C7A8573001F6337 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		8E8436511C7A712D001F6337 /* TopMusicVideosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TopMusicVideosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E8436551C7A712D001F6337 /* TopMusicVideosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopMusicVideosUITests.swift; sourceTree = "<group>"; };
 		8E8436571C7A712D001F6337 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E8436671C7A8573001F6337 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		8E8436631C7A7FBE001F6337 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8E8436671C7A8573001F6337 /* APIManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E8436681C7A8573001F6337 /* APIManager.swift in Sources */,
 				8E8436381C7A712C001F6337 /* ViewController.swift in Sources */,
 				8E8436361C7A712C001F6337 /* AppDelegate.swift in Sources */,
 			);
