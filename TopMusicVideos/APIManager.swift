@@ -38,7 +38,7 @@ class APIManager {
                     
                     if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)// option for application don't crash
                         // waits for dictionary { not array [
-                        as? [String: AnyObject] {
+                        as? JSONDictionary /* typealias [String: AnyObject]*/ {
                             
                             print(json) //  console
                             // try diferent priority? DISPATCH_QUEUE_PRIORITY_LOW
