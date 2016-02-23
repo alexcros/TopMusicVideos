@@ -8,63 +8,66 @@
 
 import Foundation
 
-class Videos {
+class MusicVideos {
+    
     // data encapsulation: update from api backend
     
-    private var _vName:String
-    private var _vImageUrl:String
-    private var _vVideoUrl:String
+    private var _name: String
+    private var _imageURL: String
+    private var _videoURL: String
     
     // getters
     
-    var vName: String {
-        return _vName
+    var name: String {
+        return _name
     }
     
-    var vImageUrl: String {
-        return _vImageUrl
+    var imageURL: String {
+        return _imageURL
     }
     
-    var vVideoUrl: String {
-        return _vVideoUrl
+    var videoURL: String {
+        return _videoURL
     }
+
+    // Initializer for MusicVideo Objects
     
     init(data: JSONDictionary) {
-        // Initialize all properties for avoid errors
-        // Create a initializer
         
-        // VideoName data from json match "im:var"
-        if let name = data["im:name"] as? JSONDictionary, // { dictionary
-            vName = name["label"] as? String {
-                self._vName = vName
+        
+        // VideoName data from json match "im:var" Initialize all properties for avoid errors
+        if let videoNameDictionary = data["im:name"] as? JSONDictionary, // { dictionary
+            videoName = videoNameDictionary["label"] as? String {
+                _name = videoName
         }
-        else {
-            // no data back from JSON - element in the JSON unexpected
-            _vName = ""
+        else { // in case we get nothing back from the JSON
+            
+            _name = ""
             
         }
         
-        if let img = data["im:image"] as? JSONArray,
-            image = img[2] as? JSONDictionary,
-            imageLabel = image["label"] as? String {
-                _vImageUrl =
+        // Thumbnails
+        if let imageArray = data["im:image"] as? JSONArray,
+            imageDictionaryThumbnail = imageArray[2] as? JSONDictionary, // [1,2,3]
+            imageLabel = imageDictionaryThumbnail["label"] as? String {
+                _imageURL =
                     imageLabel.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")// pass the image from JSON and replace the imageResolution
         }
         else
         {
-            _vImageUrl = ""
+            _imageURL = ""
         }
         
-        //VideoURL
-        if let video = data["link"] as? JSONArray, // [ array
-            vUrl = video[1] as? JSONDictionary, // { Dictionary
-            vHref = vUrl["attributes"] as? JSONDictionary,
-            vVideoUrl = vHref["href"] as? String {
-                self._vVideoUrl = vVideoUrl
+        // VideoURL
+        if let videoArray = data["link"] as? JSONArray, // [ array
+            urlDictionary = videoArray[1] as? JSONDictionary, // { Dictionary
+            attributeDictionary = urlDictionary["attributes"] as? JSONDictionary,
+            videoHref = attributeDictionary["href"] as? String {
+                _videoURL = videoHref
         }
         else
         {
-            _vVideoUrl = ""
+            _videoURL = "" // in case we get nothing back from the JSON
         }
         
         
