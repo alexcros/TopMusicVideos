@@ -8,13 +8,20 @@
 
 import Foundation
 
-class MusicVideos {
+class MusicVideo {
     
-    // data encapsulation: update from api backend
+    // data encapsulation
     
     private var _name: String
+    private var _rigths: String
+    private var _price: String
     private var _imageURL: String
     private var _videoURL: String
+    private var _artist: String
+    private var _iMid: String
+    private var _genre: String
+    private var _videoLinkToiTunes: String
+    private var _releaseDate: String
     
     // getters
     
@@ -29,20 +36,70 @@ class MusicVideos {
     var videoURL: String {
         return _videoURL
     }
+    
+    var rigths: String {
+        return _rigths
+    }
+    
+    var price: String {
+        return _price
+    }
+    
+    var artist: String {
+        return _artist
+    }
+    
+    var iMid: String {
+        return self._iMid
+    }
+    
+    var genre: String {
+        return self._genre
+    }
+    
+    var videoLinkToiTunes: String {
+        return _videoLinkToiTunes
+    }
+    
+    var releaseDate: String {
+        return _releaseDate
+    }
 
     // Initializer for MusicVideo Objects
     
     init(data: JSONDictionary) {
         
         
-        // VideoName data from json match "im:var" Initialize all properties for avoid errors
-        if let videoNameDictionary = data["im:name"] as? JSONDictionary, // { dictionary
+        // VideoName data from json match
+        if let videoNameDictionary = data["im:name"] as? JSONDictionary,
             videoName = videoNameDictionary["label"] as? String {
                 _name = videoName
         }
         else { // in case we get nothing back from the JSON
             
             _name = ""
+            
+        }
+        
+        // rigths
+        if let rigthsDictionary = data["rights"] as? JSONDictionary, // { dictionary
+            rigthsLabel = rigthsDictionary["label"] as? String {
+                _rigths = rigthsLabel
+        }
+        else { // in case we get nothing back from the JSON
+            
+            _rigths = ""
+            
+        }
+        
+        // price
+        if let priceDictionary = data["im:price"] as? JSONDictionary, // { dictionary
+            priceLabel = priceDictionary["label"] as? String {
+                _price = priceLabel
+        }
+        else { // in case we get nothing back from the JSON
+            
+            _price = ""
             
         }
         
@@ -70,8 +127,62 @@ class MusicVideos {
             _videoURL = "" // in case we get nothing back from the JSON
         }
         
+        // artist
+        if let artistDictionary = data["im:artist"] as? JSONDictionary, // { dictionary
+            artistName = artistDictionary["label"] as? String {
+                _artist = artistName
+        }
+        else { // in case we get nothing back from the JSON
+            
+            _artist = ""
+            
+        }
+        
+        // imid
+        if let iMid = data["id"] as? JSONDictionary, // { dictionary
+            idVideo = iMid["label"] as? String {
+                _iMid = idVideo
+        }
+        else { // in case we get nothing back from the JSON
+            
+            _iMid = ""
+            
+        }
+        
+        //genre
+        if let genre = data["category"] as? JSONDictionary,
+            genreDictionary = genre["attributes"] as? JSONDictionary,
+            genreLabel = genreDictionary["label"] as? String {
+            _genre = genreLabel
+                
+        } else {
+            
+            _genre=""
+        }
+        
+        // link
+        if let videoLinkToiTunes = data["link"] as? JSONArray,
+            attrDictionary = videoLinkToiTunes[1] as? JSONDictionary, // [1,2,3]
+            hrefURL = attrDictionary["href"] as? String {
+                _videoLinkToiTunes = hrefURL
+                
+        }
+        else
+        {
+            _videoLinkToiTunes = ""
+        }
+        
+        // release data
+        if let releaseDate = data["im:releaseDate"] as? JSONDictionary, // { dictionary
+            date = releaseDate["label"] as? String {
+                _releaseDate = date
+        }
+        else { // in case we get nothing back from the JSON
+            
+            _releaseDate = ""
+            
+        }
         
     }
-
 
 }
