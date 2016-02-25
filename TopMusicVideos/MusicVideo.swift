@@ -64,8 +64,11 @@ class MusicVideo {
     var releaseDate: String {
         return _releaseDate
     }
+    
+    // this variable is created from the UI, optional
+    var imageData:NSData?
 
-    // Initializer for MusicVideo Objects
+    // Custom Initializer for MusicVideo Objects
     
     init(data: JSONDictionary) {
         

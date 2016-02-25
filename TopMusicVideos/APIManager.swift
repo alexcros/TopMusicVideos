@@ -10,24 +10,27 @@ import Foundation
 
 class APIManager {
     // urlString from VC and completion
-    func loadData(urlString:String, completion: (result:String) -> Void) {
+    func loadData(urlString:String, completion: [MusicVideo] -> Void) {
         
         // no caching: no persistent changes in disk, cookies, cache or credentials
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         
-        let session = NSURLSession(configuration: config)
         // create session
-        //let session = NSURLSession.sharedSession() //singleton d pattern, just one session caching
+        let session = NSURLSession(configuration: config)
+        
         let url = NSURL(string: urlString)!
         
         let task = session.dataTaskWithURL(url) { // task.resume()
             (data, response,error ) -> Void in
         
         if error != nil {
-            dispatch_async(dispatch_get_main_queue()) {
-                completion(result: (error!.localizedDescription))
-            }
-        }else {
+//            dispatch_async(dispatch_get_main_queue()) {
+//                completion(result: (error!.localizedDescription))
+            
+            print(error!.localizedDescription)
+            
+            
+        } else {
                 // Added for JSON serialization
                 //print(data)
                 do {
@@ -36,30 +39,34 @@ class APIManager {
                     Do / Try / Catch Converts the NSDATA into a JSON Object and cast it
                     to a Dictionary */
                     
-                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)// option for application don't crash
-                        // waits for dictionary { not array [
-                        as? JSONDictionary /* typealias [String: AnyObject]*/ {
+                    // APIManager logic start
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? JSONDictionary, // data to JSONDictionary root
+                        feed = json["feed"] as? JSONDictionary,
+                        videoArray = feed["entry"] as? JSONArray {
                             
-                            print(json) //  console
-                            // try diferent priority? DISPATCH_QUEUE_PRIORITY_LOW
-                            let priority = DISPATCH_QUEUE_PRIORITY_HIGH // QOS
+                            var videos = [MusicVideo]()
+                            for entry in videoArray {
+                                let entry = MusicVideo(data: entry as! JSONDictionary)
+                                videos.append(entry)
+                            }
+                            // APIManager logic end
+                            let i = videos.count
+                            print("iTunesApiManager retrieve \(i) videos")
+                            print(" ")
+                            
+                            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
                             dispatch_async(dispatch_get_global_queue(priority, 0)) {
                                 dispatch_async(dispatch_get_main_queue()) {
-                                    completion(result: "JSONSerialization Succesful")
+                                    completion(videos)
                                 }
                             }
-                    }
+                }
                 } catch {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        completion(result: "error in JSONSerialization")
-                    }
-                }
-                
-                // End of JSONSerialization
-            
-            
-                }
+                    
+                    print("error in JSONSerialization")
             }
-        task.resume()
+            }
+        }
+            task.resume()
 }
 }
