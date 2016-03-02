@@ -23,6 +23,10 @@ class MusicVideo {
     private var _videoLinkToiTunes: String
     private var _releaseDate: String
     
+    
+    // this variable is created from the UI, optional
+    var imageData:NSData?
+    
     // getters
     
     var name: String {
@@ -65,8 +69,6 @@ class MusicVideo {
         return _releaseDate
     }
     
-    // this variable is created from the UI, optional
-    var imageData:NSData?
 
     // Custom Initializer for MusicVideo Objects
     
