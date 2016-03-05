@@ -22,10 +22,6 @@ class MusicVideoTableViewController: UITableViewController {
         // call function status
         reachabilityStatusChanged()
         
-        //Call API
-        let api = APIManager()
-        api.loadData("https://itunes.apple.com/es/rss/topmusicvideos/limit=50/json", completion: didLoadData)
-        
     }
     // shows API binary data
     func didLoadData(videos: [MusicVideo]) {// bring back videos
@@ -58,22 +54,52 @@ class MusicVideoTableViewController: UITableViewController {
         
         switch reachabilityStatus {
             
-        case NOACCESS : view.backgroundColor = UIColor.redColor()
-        //displayLabel.text = "No Internet"
+        case NOACCESS :
+            view.backgroundColor = UIColor.redColor()
+            // If we don't have access, come back to main queue
+            dispatch_async(dispatch_get_main_queue()) {
+            let alert = UIAlertController(title:"No Internet", message: "Please, make sure you are connected to the internet", preferredStyle: .Alert)
             
-        case WIFI : view.backgroundColor = UIColor.greenColor()
-        //displayLabel.text = "WIFI OK"
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Default) {
+                action -> Void in
+                print("Cancel")
+            }
+            let deleteAction = UIAlertAction(title: "Delete", style: .Destructive) {
+                action -> () in
+                print("Delete")
+            }
+            let okAction = UIAlertAction(title: "Ok", style: .Default) {
+                action -> () in
+                print("Ok")
+                
+                //alert.dismissViewControllerAnimated(true, completion:nil)
+            }
             
-        case WWAN : view.backgroundColor = UIColor.yellowColor()
-        //displayLabel.text = "Cellular OK"
+            alert.addAction(cancelAction)
+            alert.addAction(deleteAction)
+            alert.addAction(okAction)
             
-        default : return
+            self.presentViewController(alert, animated: true, completion: nil)
+            }
+        default:
+            view.backgroundColor = UIColor.greenColor()
+            if videos.count > 0 {
+                 runAPI()
+            } else {
+                print ("API no refreshed")
+            }
             
         }
     }
     // removeObserver: called when object is about to be deallocated
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+    }
+    
+    func runAPI() {
+        //Call API
+        let api = APIManager()
+        api.loadData("https://itunes.apple.com/es/rss/topmusicvideos/limit=50/json", completion: didLoadData)
     }
 
     // MARK: - Table view data source
