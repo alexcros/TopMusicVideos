@@ -18,6 +18,7 @@
 		8E84366B1C7BC3B7001F6337 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E84366A1C7BC3B7001F6337 /* Constants.swift */; };
 		8E84366D1C7BC636001F6337 /* MusicVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E84366C1C7BC636001F6337 /* MusicVideo.swift */; };
 		8E8436721C7FB5A5001F6337 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436711C7FB5A5001F6337 /* Reachability.m */; };
+		8E8436761C8B5E95001F6337 /* MusicVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		8E84366F1C7FB5A4001F6337 /* TopMusicVideos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TopMusicVideos-Bridging-Header.h"; sourceTree = "<group>"; };
 		8E8436701C7FB5A5001F6337 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8E8436711C7FB5A5001F6337 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 		8E8436641C7A7FD4001F6337 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */,
 				8E8436371C7A712C001F6337 /* ViewController.swift */,
 			);
 			name = Controller;
@@ -323,6 +326,7 @@
 				8E8436681C7A8573001F6337 /* APIManager.swift in Sources */,
 				8E8436381C7A712C001F6337 /* ViewController.swift in Sources */,
 				8E84366D1C7BC636001F6337 /* MusicVideo.swift in Sources */,
+				8E8436761C8B5E95001F6337 /* MusicVideoTableViewController.swift in Sources */,
 				8E8436361C7A712C001F6337 /* AppDelegate.swift in Sources */,
 				8E8436721C7FB5A5001F6337 /* Reachability.m in Sources */,
 				8E84366B1C7BC3B7001F6337 /* Constants.swift in Sources */,
@@ -557,6 +561,7 @@
 				8E84365C1C7A712D001F6337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E84365D1C7A712D001F6337 /* Build configuration list for PBXNativeTarget "TopMusicVideosTests" */ = {
 			isa = XCConfigurationList;
@@ -565,6 +570,7 @@
 				8E84365F1C7A712D001F6337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E8436601C7A712D001F6337 /* Build configuration list for PBXNativeTarget "TopMusicVideosUITests" */ = {
 			isa = XCConfigurationList;
@@ -573,6 +579,7 @@
 				8E8436621C7A712D001F6337 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
