@@ -10,26 +10,38 @@ import UIKit
 
 class MusicVideoDetailViewController: UIViewController {
 
+    var videoArray : MusicVideo!
+    
+    @IBOutlet weak var name: UILabel!
+    
+    @IBOutlet weak var videoImage: UIImageView!
+    
+    @IBOutlet weak var genre: UILabel!
+    
+    @IBOutlet weak var price: UILabel!
+    
+    @IBOutlet weak var rights: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        title = videoArray.artist
+        
+        // outlets assignment
+        name.text = videoArray.name
+        price.text = videoArray.price
+        rights.text = videoArray.rigths
+        genre.text = videoArray.genre
+        
+        if videoArray.imageData != nil {
+            videoImage.image = UIImage(data: videoArray.imageData!)
+        
+        } else {
+            videoImage.image = UIImage(named: "noPhotoAvailable")
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+  
 
 }

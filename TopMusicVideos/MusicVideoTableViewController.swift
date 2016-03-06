@@ -126,6 +126,7 @@ class MusicVideoTableViewController: UITableViewController {
     // cell identifier
     private struct storyboard {
         static let cell = "cell"
+        static let segueIdentifier = "musicDetail"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -174,14 +175,18 @@ class MusicVideoTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == storyboard.segueIdentifier // musicDetail segue
+        {   // set indexpath for wherever row selected
+            if let indexpath = tableView.indexPathForSelectedRow {
+                let video = videos[indexpath.row] // set indexpath to array video
+                let detailViewController = segue.destinationViewController as! MusicVideoDetailViewController // segue to...
+                detailViewController.videoArray = video
+            }
+        }
     }
-    */
+
 
 }
