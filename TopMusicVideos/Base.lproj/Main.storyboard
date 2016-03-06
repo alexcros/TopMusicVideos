@@ -145,6 +145,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DUR-b9-0JG">
                                                     <rect key="frame" x="535" y="26" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="touchIDSecurity:" destination="bWc-dc-HnA" eventType="valueChanged" id="eCl-h4-zxE"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>

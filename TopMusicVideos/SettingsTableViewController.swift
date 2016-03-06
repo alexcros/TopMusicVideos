@@ -10,7 +10,7 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
 
-    
+    // MARK: IBOutlet
     @IBOutlet weak var aboutDisplay: UILabel!
     
     @IBOutlet weak var feedbackDisplay: UILabel!
@@ -29,11 +29,33 @@ class SettingsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // font changes observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChange", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
         tableView.alwaysBounceVertical = false
+        
+        title = "settings"
+        
+        // switch
+        touchId.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
     }
+    
+   // MARK: - IBAction switch
+    @IBAction func touchIDSecurity(sender: UISwitch) {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if touchId.on { //true
+            defaults.setBool(touchId.on, forKey: "SecSetting")
+            print("touchID on")
+        }
+        else { // false
+            defaults.setBool(false, forKey: "SecSetting")
+            print("touchID off")
+        }
+    }
+    
     // change dinamically
     func preferredFontChange() {
         
@@ -44,7 +66,7 @@ class SettingsTableViewController: UITableViewController {
         APICount.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
     }
     
-    // removeObserver: called when object is about to be deallocated
+    // MARK: removeObserver: called when object is about to be deallocated
     deinit {
         // font observer
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)

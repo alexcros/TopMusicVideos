@@ -12,6 +12,8 @@ class MusicVideoDetailViewController: UIViewController {
 
     var videoArray : MusicVideo!
     
+    var sec:Bool = false
+    
     @IBOutlet weak var name: UILabel!
     
     @IBOutlet weak var videoImage: UIImageView!
@@ -24,6 +26,8 @@ class MusicVideoDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //sec = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
         title = videoArray.artist
         	
         // outlets assignment
