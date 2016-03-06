@@ -45,8 +45,9 @@ class APIManager {
                         videoArray = feed["entry"] as? JSONArray {
                             
                             var videos = [MusicVideo]()
-                            for entry in videoArray {
+                            for (index, entry) in videoArray.enumerate() {
                                 let entry = MusicVideo(data: entry as! JSONDictionary)
+                                entry.rank = index+1
                                 videos.append(entry)
                             }
                             // APIManager logic end

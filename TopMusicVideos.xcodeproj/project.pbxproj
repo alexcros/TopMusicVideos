@@ -19,6 +19,7 @@
 		8E84366D1C7BC636001F6337 /* MusicVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E84366C1C7BC636001F6337 /* MusicVideo.swift */; };
 		8E8436721C7FB5A5001F6337 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436711C7FB5A5001F6337 /* Reachability.m */; };
 		8E8436761C8B5E95001F6337 /* MusicVideoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */; };
+		8E84367A1C8B7C25001F6337 /* MusicVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436791C8B7C25001F6337 /* MusicVideoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		8E8436701C7FB5A5001F6337 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		8E8436711C7FB5A5001F6337 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoTableViewController.swift; sourceTree = "<group>"; };
+		8E8436791C8B7C25001F6337 /* MusicVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicVideoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		8E8436641C7A7FD4001F6337 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				8E8436791C8B7C25001F6337 /* MusicVideoTableViewCell.swift */,
 				8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */,
 				8E8436371C7A712C001F6337 /* ViewController.swift */,
 			);
@@ -326,6 +329,7 @@
 				8E8436681C7A8573001F6337 /* APIManager.swift in Sources */,
 				8E8436381C7A712C001F6337 /* ViewController.swift in Sources */,
 				8E84366D1C7BC636001F6337 /* MusicVideo.swift in Sources */,
+				8E84367A1C8B7C25001F6337 /* MusicVideoTableViewCell.swift in Sources */,
 				8E8436761C8B5E95001F6337 /* MusicVideoTableViewController.swift in Sources */,
 				8E8436361C7A712C001F6337 /* AppDelegate.swift in Sources */,
 				8E8436721C7FB5A5001F6337 /* Reachability.m in Sources */,

@@ -10,8 +10,9 @@ import Foundation
 
 class MusicVideo {
     
-    // data encapsulation
+     var rank = 0
     
+    // data encapsulation
     private var _name: String
     private var _rigths: String
     private var _price: String

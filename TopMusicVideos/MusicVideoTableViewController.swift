@@ -55,7 +55,7 @@ class MusicVideoTableViewController: UITableViewController {
         switch reachabilityStatus {
             
         case NOACCESS :
-            view.backgroundColor = UIColor.redColor()
+            //view.backgroundColor = UIColor.redColor()
             // If we don't have access, come back to main queue
             dispatch_async(dispatch_get_main_queue()) {
             let alert = UIAlertController(title:"No Internet", message: "Please, make sure you are connected to the internet", preferredStyle: .Alert)
@@ -82,8 +82,8 @@ class MusicVideoTableViewController: UITableViewController {
             self.presentViewController(alert, animated: true, completion: nil)
             }
         default:
-            view.backgroundColor = UIColor.greenColor()
-            if videos.count > 0 {
+            //view.backgroundColor = UIColor.greenColor()
+            if videos.count == 0 {
                  runAPI()
             } else {
                 print ("API no refreshed")
@@ -113,17 +113,18 @@ class MusicVideoTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return videos.count 
     }
-
+    
+    // cell identifier
+    private struct storyboard {
+        static let cell = "cell"
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(storyboard.cell, forIndexPath: indexPath) as! MusicVideoTableViewCell // my custom cell
 
-        // cfg cell
-        let video = videos[indexPath.row]
+        // MusicVideoTableViewCell
+        cell.video = videos[indexPath.row]
         
-        cell.textLabel?.text = ("\(indexPath.row + 1)")
-        
-        cell.detailTextLabel?.text = video.name
 
         return cell
     }
