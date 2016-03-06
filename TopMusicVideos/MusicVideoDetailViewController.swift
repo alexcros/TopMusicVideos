@@ -25,7 +25,7 @@ class MusicVideoDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = videoArray.artist
-        
+        	
         // outlets assignment
         name.text = videoArray.name
         price.text = videoArray.price
