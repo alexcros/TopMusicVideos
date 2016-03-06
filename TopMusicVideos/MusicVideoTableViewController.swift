@@ -19,10 +19,18 @@ class MusicVideoTableViewController: UITableViewController {
         // addObserver: call ReachStatusChanged selector:in appDelegate
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityStatusChanged", name: "ReachStatusChanged", object: nil)
         
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChange", name: UIContentSizeCategoryDidChangeNotification, object: nil)
+        
         // call function status
         reachabilityStatusChanged()
         
     }
+    
+    func preferredFontChange() {
+        
+        print("The preferred font has changed")
+    }
+    
     // shows API binary data
     func didLoadData(videos: [MusicVideo]) {// bring back videos
         
@@ -94,6 +102,7 @@ class MusicVideoTableViewController: UITableViewController {
     // removeObserver: called when object is about to be deallocated
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
     
     func runAPI() {
@@ -105,12 +114,12 @@ class MusicVideoTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        // return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        // return the number of rows
         return videos.count 
     }
     
