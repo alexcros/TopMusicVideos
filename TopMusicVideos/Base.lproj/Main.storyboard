@@ -68,10 +68,10 @@
             </objects>
             <point key="canvasLocation" x="1086" y="-7"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Settings Table View Controller-->
         <scene sceneID="fra-Jt-y0d">
             <objects>
-                <tableViewController id="bWc-dc-HnA" sceneMemberID="viewController">
+                <tableViewController id="bWc-dc-HnA" customClass="SettingsTableViewController" customModule="TopMusicVideos" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="T0t-Nk-aWb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,6 +233,15 @@
                             <outlet property="delegate" destination="bWc-dc-HnA" id="0UP-cE-DwD"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="APICount" destination="UaS-Pg-8bb" id="i09-dj-fMX"/>
+                        <outlet property="aboutDisplay" destination="HbJ-2z-YDo" id="NMi-ND-ldv"/>
+                        <outlet property="bestImageDisplay" destination="oSE-RV-VCJ" id="DyL-vZ-PbO"/>
+                        <outlet property="feedbackDisplay" destination="wRb-Vh-Zre" id="zIh-Db-6U7"/>
+                        <outlet property="securityDisplay" destination="CMA-E3-BGF" id="tYn-Oq-GXq"/>
+                        <outlet property="sliderCount" destination="W2E-6p-pRQ" id="5Ml-U3-bYj"/>
+                        <outlet property="touchId" destination="DUR-b9-0JG" id="3Nh-j2-v4q"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rmk-w3-hie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
