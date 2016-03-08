@@ -17,9 +17,7 @@ class SettingsTableViewController: UITableViewController {
     
     @IBOutlet weak var securityDisplay: UILabel!
     
-    
     @IBOutlet weak var touchId: UISwitch!
-    
     
     @IBOutlet weak var bestImageDisplay: UILabel!
     
@@ -30,7 +28,6 @@ class SettingsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         // font changes observer
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "preferredFontChange", name: UIContentSizeCategoryDidChangeNotification, object: nil)
         
@@ -40,9 +37,26 @@ class SettingsTableViewController: UITableViewController {
         
         // switch
         touchId.on = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
+        
+        //slider: avoids message "fatal error: unexpectedly found nil while unwrapping an Optional value" if app is deleted when running
+      if (NSUserDefaults.standardUserDefaults().objectForKey("APICOUNT") != nil)
+        {
+            let sliderValue = NSUserDefaults.standardUserDefaults().objectForKey("APICOUNT") as! Int // casting sliderValue from anyObject to INT
+            APICount.text = "\(sliderValue)"
+            sliderCount.value = Float(sliderValue) // cast int to float
+        }
+        
     }
     
-   // MARK: - IBAction switch
+   // MARK: - IBActions
+    
+    
+    @IBAction func valueChanged(sender: AnyObject) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(Int(sliderCount.value), forKey: "APICOUNT")
+        APICount.text = ("\(Int(sliderCount.value))")
+    }
+    
     @IBAction func touchIDSecurity(sender: UISwitch) {
         
         let defaults = NSUserDefaults.standardUserDefaults()

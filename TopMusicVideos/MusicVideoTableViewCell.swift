@@ -10,7 +10,6 @@ import UIKit
 
 class MusicVideoTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var thumbnailImage: UIImageView!
    
     @IBOutlet weak var rank: UILabel!

@@ -135,7 +135,6 @@ class MusicVideoTableViewController: UITableViewController {
         // MusicVideoTableViewCell
         cell.video = videos[indexPath.row]
         
-
         return cell
     }
     
@@ -174,7 +173,6 @@ class MusicVideoTableViewController: UITableViewController {
         return true
     }
     */
-
 
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
