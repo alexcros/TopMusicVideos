@@ -125,8 +125,8 @@ class MusicVideo {
         if let videoArray = data["link"] as? JSONArray, // [ array
             urlDictionary = videoArray[1] as? JSONDictionary, // { Dictionary
             attributeDictionary = urlDictionary["attributes"] as? JSONDictionary,
-            videoHref = attributeDictionary["href"] as? String {
-                _videoURL = videoHref
+            videoURL = attributeDictionary["href"] as? String {
+                self._videoURL = videoURL
         }
         else
         {
