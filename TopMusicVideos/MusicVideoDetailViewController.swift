@@ -27,6 +27,9 @@ class MusicVideoDetailViewController: UIViewController {
     
     @IBOutlet weak var rights: UILabel!
     
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,8 +49,56 @@ class MusicVideoDetailViewController: UIViewController {
             videoImage.image = UIImage(named: "noPhotoAvailable")
         }
     }
+    
+    func shareMedia() {
+        
+        let activity1 = "Have you had the opportunity to see this Video?"
+        let activity2 = ("-\(videoArray.name) by \(videoArray.artist)-")
+        //let activity3 = "Watch it and tell me what you think!"
+        let activity4 = videoArray.videoLinkToiTunes
+        let activity5 = "https://github.com/alexcros/TopMusicVideos"
+        
+        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [activity1, activity2, activity4, activity5], applicationActivities: nil)
+        
+        //activityViewController.excludedActivityTypes = [UIActivityTypeMail]
+        
+        // activityViewController.excludedActivityTypes = [
+        // UIActivityTypePostToTwitter,
+        // UIActivityTypePostToFacebook,
+        // UIActivityTypeMessage,
+        // UIActivityTypeMail,
+        // UIActivityTypePrint,
+        // UIActivityTypeCopyToPasteBoard,
+        // UIActivityTypeAssignToContact,
+        // UIActivityTypeSaveToCameraRoll,
+        // UIActivityTypeAddToReadingList,
+        // UIActivityTypePostToFlickr,
+        // UIActivityTypePostToVimeo,
+        // UIActivityTypePostToTencentWeibo
+        
+        //]
+        
+        // block
+        activityViewController.completionWithItemsHandler = {
+            (activity, success, items, error) in
+            
+            if activity == UIActivityTypeMail {
+                print("email selected")
+            }
+        }
+        
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+        
+    }
 
-
+    // share with security
+    @IBAction func shareSocialMedia(sender: UIBarButtonItem) {
+    
+        shareMedia()
+    
+    }
+    
+    
     @IBAction func playVideo(sender: UIBarButtonItem) {
         
         // url from videoArray
@@ -63,7 +114,6 @@ class MusicVideoDetailViewController: UIViewController {
             
             playerInViewController.player?.play()
         }
-        
         
         
         

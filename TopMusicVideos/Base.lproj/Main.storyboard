@@ -354,6 +354,9 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="X1Z-0N-Ud7"/>
                         <barButtonItem systemItem="action" id="uSc-hs-2z1">
                             <color key="tintColor" red="0.2901960784" green="0.6705882353" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="shareSocialMedia:" destination="iwp-8D-18S" id="Yh6-F1-9o1"/>
+                            </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <connections>

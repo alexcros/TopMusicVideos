@@ -168,8 +168,9 @@ class MusicVideo {
         
         // link
         if let videoLinkToiTunes = data["link"] as? JSONArray,
-            attrDictionary = videoLinkToiTunes[1] as? JSONDictionary, // [1,2,3]
-            hrefURL = attrDictionary["href"] as? String {
+            attrDictionary = videoLinkToiTunes[0] as? JSONDictionary, // [1,2,3]
+            href = attrDictionary["attributes"] as? JSONDictionary,
+            hrefURL = href["href"] as? String {
                 _videoLinkToiTunes = hrefURL
                 
         }
