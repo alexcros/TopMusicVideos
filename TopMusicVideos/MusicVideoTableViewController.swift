@@ -13,6 +13,8 @@ class MusicVideoTableViewController: UITableViewController {
     
     var videos = [MusicVideo]()
     
+    var limitVideos = 10
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +46,10 @@ class MusicVideoTableViewController: UITableViewController {
         for (index, item) in videos.enumerate() {
             print("\(index) name = \(item.name)")
         }
+        // NC color
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blueColor()]
+        // NC title
+        title = ("The spanish TOP \(limitVideos) Music Videos")
         
         tableView.reloadData()
         
@@ -105,10 +111,36 @@ class MusicVideoTableViewController: UITableViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
     }
     
+    @IBAction func refreshMusicVideos(sender: UIRefreshControl) {
+        
+        refreshControl?.endRefreshing()
+        runAPI()
+        
+    }
+    
+    
+    func getAPICount() {
+        
+        if (NSUserDefaults.standardUserDefaults().objectForKey("APICOUNT") != nil)
+        {
+            let sliderValue = NSUserDefaults.standardUserDefaults().objectForKey("APICOUNT") as! Int
+            
+            limitVideos = sliderValue
+        }
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "E, dd MMM yyyy HH:mm:ss"
+        let refreshDate = formatter.stringFromDate(NSDate())
+        
+        refreshControl?.attributedTitle = NSAttributedString(string: "\(refreshDate)")
+    }
+    
     func runAPI() {
+        
+        getAPICount()
         //Call API
         let api = APIManager()
-        api.loadData("https://itunes.apple.com/es/rss/topmusicvideos/limit=50/json", completion: didLoadData)
+        api.loadData("https://itunes.apple.com/es/rss/topmusicvideos/limit=\(limitVideos)/json", completion: didLoadData)
     }
 
     // MARK: - Table view data source

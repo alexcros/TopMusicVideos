@@ -45,6 +45,11 @@ class SettingsTableViewController: UITableViewController {
             APICount.text = "\(sliderValue)"
             sliderCount.value = Float(sliderValue) // cast int to float
         }
+      else // default slider value
+      {
+            sliderCount.value = 10.0
+            APICount.text = ("\(Int(sliderCount.value))")
+        }
         
     }
     

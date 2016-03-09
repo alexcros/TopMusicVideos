@@ -63,6 +63,12 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="sGh-od-iwO"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="U9s-12-qnL">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refreshMusicVideos:" destination="1PE-he-kbJ" eventType="valueChanged" id="lRa-gA-rQg"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nEy-qI-uNP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
