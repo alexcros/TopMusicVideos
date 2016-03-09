@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingsTableViewController: UITableViewController {
+class SettingsTableViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
     // MARK: IBOutlet
     @IBOutlet weak var aboutDisplay: UILabel!
@@ -83,6 +84,63 @@ class SettingsTableViewController: UITableViewController {
         securityDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         bestImageDisplay.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
         APICount.font = UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // select the row feedback
+        if indexPath.section == 0 && indexPath.row == 1 {
+            
+            let mailComposeViewController = configureMail()
+            
+            if MFMailComposeViewController.canSendMail() {
+                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            }
+            else {
+                // no mail account setup on phone
+                mailAlert()
+                
+            }
+            // deselect highlighted row at the end
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            
+        }
+    }
+    
+    func mailAlert() {
+        
+        let alertController : UIAlertController = UIAlertController(title: "Alert", message: "No e-mail account setup for phone", preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "Ok", style: .Default) { action -> Void in
+            // do something
+        }
+        
+        alertController.addAction(okAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    // mail setup
+    func configureMail() -> MFMailComposeViewController {
+        let mailComposeVC = MFMailComposeViewController() //instance
+        mailComposeVC.mailComposeDelegate = self //method belongs to protocol
+        mailComposeVC.setToRecipients(["info@alexcros.com"])
+        mailComposeVC.setSubject("TopMusicVideos Feedback")
+        mailComposeVC.setMessageBody("Hi Alex,\n\nI would like to share...\n", isHTML: false)
+        return mailComposeVC
+    }
+    // protocol implemented
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        
+        switch result.rawValue {
+        case MFMailComposeResultCancelled.rawValue: print("Mail Cancelled")
+        case MFMailComposeResultSaved.rawValue: print("Mail saved")
+        case MFMailComposeResultSent.rawValue: print("Mail sent")
+        case MFMailComposeResultFailed.rawValue: print("Mail failed")
+        default:
+            print("Mail error unknown")
+        }
+        // MFMailComposeVC screen away
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: removeObserver: called when object is about to be deallocated
