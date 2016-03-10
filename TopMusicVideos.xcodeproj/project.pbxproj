@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E01DC181C91D2410035FF88 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E01DC171C91D2410035FF88 /* ClassExtensions.swift */; };
 		8E8436361C7A712C001F6337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436351C7A712C001F6337 /* AppDelegate.swift */; };
 		8E8436381C7A712C001F6337 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436371C7A712C001F6337 /* ViewController.swift */; };
 		8E84363B1C7A712C001F6337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E8436391C7A712C001F6337 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E01DC171C91D2410035FF88 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		8E8436321C7A712C001F6337 /* TopMusicVideos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopMusicVideos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E8436351C7A712C001F6337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E8436371C7A712C001F6337 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				8E84367B1C8C4EFF001F6337 /* MusicVideoDetailViewController.swift */,
 				8E8436791C8B7C25001F6337 /* MusicVideoTableViewCell.swift */,
 				8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */,
+				8E01DC171C91D2410035FF88 /* ClassExtensions.swift */,
 				8E8436371C7A712C001F6337 /* ViewController.swift */,
 			);
 			name = Controller;
@@ -337,6 +340,7 @@
 				8E84366D1C7BC636001F6337 /* MusicVideo.swift in Sources */,
 				8E84367A1C8B7C25001F6337 /* MusicVideoTableViewCell.swift in Sources */,
 				8E8436761C8B5E95001F6337 /* MusicVideoTableViewController.swift in Sources */,
+				8E01DC181C91D2410035FF88 /* ClassExtensions.swift in Sources */,
 				8E8436361C7A712C001F6337 /* AppDelegate.swift in Sources */,
 				8E84367E1C8CDBFA001F6337 /* SettingsTableViewController.swift in Sources */,
 				8E8436721C7FB5A5001F6337 /* Reachability.m in Sources */,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MusicVideoTableViewController: UITableViewController, UISearchResultsUpdating {
+class MusicVideoTableViewController: UITableViewController /*,UISearchResultsUpdating */{
 
     
     var videos = [MusicVideo]()
@@ -62,7 +62,7 @@ class MusicVideoTableViewController: UITableViewController, UISearchResultsUpdat
         
         resultSearchController.dimsBackgroundDuringPresentation = false // true: only search / false: search and you can select a video
         
-        resultSearchController.searchBar.placeholder = "Search for Artist"
+        resultSearchController.searchBar.placeholder = "Search for Artist, name or rank"
         
         resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
         /*
@@ -271,18 +271,16 @@ class MusicVideoTableViewController: UITableViewController, UISearchResultsUpdat
             }
         }
     }
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        searchController.searchBar.text!.lowercaseString //text to lowerCase
-        filterSearch(searchController.searchBar.text!) // take the info
-        
-    }
+//    func updateSearchResultsForSearchController(searchController: UISearchController) {
+//        searchController.searchBar.text!.lowercaseString //text to lowerCase
+//        filterSearch(searchController.searchBar.text!) // take the info
+//        
+//    }
     func filterSearch(searchText: String){
         filterSearch = videos.filter { videos in // logic filter array
-            return videos.artist.lowercaseString.containsString(searchText.lowercaseString)
+            return videos.artist.lowercaseString.containsString(searchText.lowercaseString) || videos.name.lowercaseString.containsString(searchText.lowercaseString) || "\(videos.rank)".lowercaseString.containsString(searchText.lowercaseString)
         }
         
         tableView.reloadData()
-    
-
 }
 }
