@@ -10,12 +10,16 @@ import UIKit
 // for AVPlayer
 import AVKit
 import AVFoundation
+// Security
+import LocalAuthentication
 
 class MusicVideoDetailViewController: UIViewController {
 
     var videoArray : MusicVideo!
     
-    var sec:Bool = false
+    //var sec:Bool = false
+    
+    var securitySwitch:Bool = false
     
     @IBOutlet weak var name: UILabel!
     
@@ -93,11 +97,102 @@ class MusicVideoDetailViewController: UIViewController {
 
     // share with security
     @IBAction func shareSocialMedia(sender: UIBarButtonItem) {
-    
-        shareMedia()
+        
+        securitySwitch = NSUserDefaults.standardUserDefaults().boolForKey("SecSetting")
+        
+        switch securitySwitch {
+        case true: // is ON?
+            touchIDCheck()
+        default:
+            shareMedia()
+        }
     
     }
     
+    func touchIDCheck(){
+        // create alert
+        let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert )
+        alert.addAction(UIAlertAction(title: "continue", style: UIAlertActionStyle.Cancel, handler: nil))
+        
+        // create the local authentication context
+        let context = LAContext()
+        var touchIdError : NSError?
+        let reasonString = "Touch-id authentication is needed to share info on Social Media"
+        
+        // touchID in device? check if we can access local device authentication
+        //if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &touchIdError) {
+            // check what the authentication response was
+            //context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success, policyError) Void -> in
+                // reply: execute block login in private thread within the FW
+        if context.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error:&touchIdError ) {
+            
+            context.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: reasonString, reply: { (success, policyError) -> Void in
+        
+                if success {
+                    // User authenticated using Local Device Authentication Succesfully!
+                    dispatch_async(dispatch_get_main_queue()) { [unowned self] in self.shareMedia()//always in dispatch_async
+                        
+                }
+                } else {
+                        
+                        alert.title = "UnSuccesful!"
+                        
+                        switch LAError(rawValue: policyError!.code)! {
+                            
+                        case .AppCancel:
+                            alert.message = "Authentication was cancelled by application"
+                        case .AuthenticationFailed: alert.message = "The user failed to provide valid credentials"
+                        case .PasscodeNotSet:
+                            alert.message = "Passcode is not set on the device"
+                        case .SystemCancel:
+                            alert.message = "Authentication was cancelled by the system"
+                        case .TouchIDLockout:
+                            alert.message = "Too many failed atempts"
+                        case .UserCancel:
+                            alert.message = "You cancelled the request"
+                        case .UserFallback:
+                            alert.message = "Pasword not accepted, must use Touch-ID"
+                        default:
+                            alert.message = "Unable to authenticate!"
+                        
+                        }
+                    
+                    // show the alert
+                    dispatch_async(dispatch_get_main_queue()) { [unowned self]
+                        in self.presentViewController(alert, animated: true, completion: nil)
+                        
+                    }
+                    
+                    }
+        })
+        
+        } else {
+            // unable to access local device authentication
+            
+            // set error title
+            alert.title = "Error"
+            
+            // set the error alert message with more information
+            switch LAError(rawValue: touchIdError!.code) {
+//                // LAError framework
+//            case .TouchIdNotEnrolled:
+//                alert.message = "Touch ID is not enrolled!"
+//            case .TouchIdNotAvailable:
+//                alert.message = "Touch ID is not available in the device!"
+//            case .PasscodeNotSet:
+//                alert.message = "Passcode has not been set!"
+//            case .InvalidContext:
+//                alert.message = "The context is invalid!"
+            default:
+                alert.message = "Local authentication not available"
+            }
+            
+            // show the alert
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
+        }
     
     @IBAction func playVideo(sender: UIBarButtonItem) {
         
@@ -116,21 +211,7 @@ class MusicVideoDetailViewController: UIViewController {
         }
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
   
-
-    
-    
-    
-    
     
 }
