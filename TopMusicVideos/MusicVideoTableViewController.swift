@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MusicVideoTableViewController: UITableViewController {
+class MusicVideoTableViewController: UITableViewController, UISearchResultsUpdating {
 
     
     var videos = [MusicVideo]()
@@ -56,7 +56,7 @@ class MusicVideoTableViewController: UITableViewController {
         title = ("The spanish TOP \(limitVideos) Music Videos")
         
         //setup search controller
-        //resultSearchController.searchResultsUpdater = self
+        resultSearchController.searchResultsUpdater = self // delegate
         
         definesPresentationContext = true // search not remind in the screen when change view
         
@@ -139,7 +139,14 @@ class MusicVideoTableViewController: UITableViewController {
     @IBAction func refreshMusicVideos(sender: UIRefreshControl) {
         
         refreshControl?.endRefreshing()
-        runAPI()
+        
+        if resultSearchController.active {
+            refreshControl?.attributedTitle = NSAttributedString(string: "No refresh allowed in search")
+        }
+        else
+        {
+             runAPI()
+        }
         
     }
     
@@ -264,6 +271,18 @@ class MusicVideoTableViewController: UITableViewController {
             }
         }
     }
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        searchController.searchBar.text!.lowercaseString //text to lowerCase
+        filterSearch(searchController.searchBar.text!) // take the info
+        
+    }
+    func filterSearch(searchText: String){
+        filterSearch = videos.filter { videos in // logic filter array
+            return videos.artist.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        tableView.reloadData()
+    
 
-
+}
 }
