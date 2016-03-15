@@ -65,6 +65,7 @@ class MusicVideoTableViewController: UITableViewController /*,UISearchResultsUpd
         resultSearchController.searchBar.placeholder = "Search for Artist, name or rank"
         
         resultSearchController.searchBar.searchBarStyle = UISearchBarStyle.Prominent
+       
         /*
         case Default // currently UISearchBarStyleProminent
         case Prominent // used my Mail, Messages and Contacts

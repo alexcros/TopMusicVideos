@@ -114,7 +114,7 @@ class MusicVideo {
             imageDictionaryThumbnail = imageArray[2] as? JSONDictionary, // [1,2,3]
             imageLabel = imageDictionaryThumbnail["label"] as? String {
                 _imageURL =
-                    imageLabel.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")// pass the image from JSON and replace the imageResolution
+                    imageLabel.stringByReplacingOccurrencesOfString("100x100", withString: "500x500")// pass the image from JSON and replace the imageResolution
         }
         else
         {

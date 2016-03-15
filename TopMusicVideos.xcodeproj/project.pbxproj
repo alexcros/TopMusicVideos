@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E01DC181C91D2410035FF88 /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E01DC171C91D2410035FF88 /* ClassExtensions.swift */; };
+		8E565D621C977D810008180E /* UIAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E565D611C977D810008180E /* UIAboutViewController.swift */; };
 		8E8436361C7A712C001F6337 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436351C7A712C001F6337 /* AppDelegate.swift */; };
 		8E8436381C7A712C001F6337 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8436371C7A712C001F6337 /* ViewController.swift */; };
 		8E84363B1C7A712C001F6337 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E8436391C7A712C001F6337 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		8E01DC171C91D2410035FF88 /* ClassExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
+		8E565D611C977D810008180E /* UIAboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAboutViewController.swift; sourceTree = "<group>"; };
 		8E8436321C7A712C001F6337 /* TopMusicVideos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopMusicVideos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E8436351C7A712C001F6337 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E8436371C7A712C001F6337 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				8E8436751C8B5E95001F6337 /* MusicVideoTableViewController.swift */,
 				8E01DC171C91D2410035FF88 /* ClassExtensions.swift */,
 				8E8436371C7A712C001F6337 /* ViewController.swift */,
+				8E565D611C977D810008180E /* UIAboutViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				8E84367E1C8CDBFA001F6337 /* SettingsTableViewController.swift in Sources */,
 				8E8436721C7FB5A5001F6337 /* Reachability.m in Sources */,
 				8E84366B1C7BC3B7001F6337 /* Constants.swift in Sources */,
+				8E565D621C977D810008180E /* UIAboutViewController.swift in Sources */,
 				8E84367C1C8C4EFF001F6337 /* MusicVideoDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

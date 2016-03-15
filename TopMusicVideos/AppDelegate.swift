@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var internetCheck: Reachability?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // add observer; reachabilityChanged? reachability.h line 21
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: kReachabilityChangedNotification , object: nil)
         
@@ -40,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let networkStatus: NetworkStatus = currentReachabilityStatus.currentReachabilityStatus()
         // reachability.h line 14
         switch networkStatus.rawValue {
-        case NotReachable.rawValue : reachabilityStatus = NOACCESS
-        case ReachableViaWiFi.rawValue : reachabilityStatus = WIFI
-        case ReachableViaWWAN.rawValue : reachabilityStatus = WWAN
+            case NotReachable.rawValue : reachabilityStatus = NOACCESS
+            case ReachableViaWiFi.rawValue : reachabilityStatus = WIFI
+            case ReachableViaWWAN.rawValue : reachabilityStatus = WWAN
         default:return
         }
         
@@ -69,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        // removeObserver
+        
         NSNotificationCenter.defaultCenter().removeObserver(self, name: kReachabilityChangedNotification, object: nil)
     }
 

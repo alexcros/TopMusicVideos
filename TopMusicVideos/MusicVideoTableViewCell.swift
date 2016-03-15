@@ -50,7 +50,8 @@ class MusicVideoTableViewCell: UITableViewCell {
         
             var image : UIImage?
             
-            if data != nil { // first time put on array
+            if data != nil
+            { // first time put on array
                     video.imageData = data
                     image = UIImage(data: data!) // override noPhotoImage
             }
@@ -61,27 +62,5 @@ class MusicVideoTableViewCell: UITableViewCell {
         }
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
